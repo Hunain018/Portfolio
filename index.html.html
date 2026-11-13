@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammad Hunain AI Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: sticky nav over a full-bleed particle-network hero, then stacked sections on a navy ground; cyan to blue glow is the single bold move. */
+:root {
+  --bg: #f2f6ff;
+  --surface: #ffffff;
+  --surface-2: #e6edfb;
+  --line: #cdd8ef;
+  --fg: #0d1a38;
+  --muted: #4a5a7d;
+  --accent: #0e7fb8;
+  --accent-2: #2457d6;
+  --gold: #b9811f;
+  --glow: rgba(14,127,184,.25);
+  --btn-fg: #ffffff;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #050a18; --surface: #0b1530; --surface-2: #101d40; --line: #1b2a55;
+    --fg: #e8eefc; --muted: #9fb0d4; --accent: #22d3ee; --accent-2: #3b82f6;
+    --gold: #d9a441; --glow: rgba(34,211,238,.35); --btn-fg: #04111f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #050a18; --surface: #0b1530; --surface-2: #101d40; --line: #1b2a55;
+  --fg: #e8eefc; --muted: #9fb0d4; --accent: #22d3ee; --accent-2: #3b82f6;
+  --gold: #d9a441; --glow: rgba(34,211,238,.35); --btn-fg: #04111f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; text-wrap: balance; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+
+/* nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.nav-in { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 700; letter-spacing: .02em; text-decoration: none; white-space: nowrap; }
+.brand b { color: var(--accent); font-weight: 700; }
+.links { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.links::-webkit-scrollbar { display: none; }
+.links a { text-decoration: none; padding: 6px 12px; border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.links a:hover, .links a.on { color: var(--fg); background: var(--surface-2); }
+.theme { flex: none; width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; font-size: 16px; }
+.theme:hover { box-shadow: 0 0 14px var(--glow); }
+
+/* hero */
+.hero { position: relative; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); overflow: hidden; }
+#net { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero-in { position: relative; text-align: center; padding-block: 88px 72px; max-width: 880px; margin: 0 auto; }
+.hello { color: var(--accent); font-weight: 600; font-size: 15px; letter-spacing: .08em; }
+.name { font-size: clamp(38px, 8vw, 72px); font-weight: 700; margin-top: 14px; }
+.name .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2) 55%, var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.role { margin-top: 18px; font-family: var(--font-display); font-size: clamp(18px, 3.4vw, 30px); font-weight: 500; color: var(--accent); }
+.role i { font-style: normal; color: var(--muted); padding: 0 .3em; }
+.tags { margin-top: 18px; color: var(--muted); font-size: 17px; }
+.tags span + span::before { content: "|"; padding: 0 .6em; opacity: .6; }
+.cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 36px; }
+.btn { text-decoration: none; font-weight: 600; font-size: 15px; padding: 12px 26px; border-radius: 999px; color: var(--btn-fg); background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 0 22px var(--glow); transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px var(--glow); }
+.btn.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); box-shadow: none; }
+.btn.ghost:hover { border-color: var(--accent); box-shadow: 0 0 18px var(--glow); }
+.socials { display: flex; justify-content: center; gap: 14px; margin-top: 26px; }
+.socials a { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); border: 1px solid var(--line); color: var(--muted); }
+.socials a:hover { color: var(--accent); border-color: var(--accent); }
+.socials svg { width: 20px; height: 20px; fill: currentColor; }
+
+/* sections */
+section { padding-block: 72px; scroll-margin-top: 64px; }
+.eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: .14em; color: var(--accent); font-weight: 600; }
+h2 { font-size: clamp(28px, 4.5vw, 40px); margin-top: 8px; }
+.lead { color: var(--muted); max-width: 62ch; margin: 14px 0 0; }
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; margin-top: 32px; }
+.about > * { min-width: 0; }
+.facts { display: grid; gap: 12px; align-content: start; margin: 0; }
+.facts div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.facts dt { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-weight: 600; }
+
+.featured { margin-top: 32px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, var(--surface), var(--surface-2)); padding: clamp(20px, 4vw, 40px); box-shadow: 0 0 40px var(--glow); display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; }
+.featured > * { min-width: 0; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .06em; padding: 4px 12px; border-radius: 999px; color: var(--accent); border: 1px solid var(--accent); }
+.featured h3 { font-size: clamp(26px, 4vw, 36px); margin: 14px 0 6px; }
+.sub { color: var(--accent); font-weight: 600; margin: 0 0 14px; }
+.featured ul { margin: 16px 0 0; padding-left: 18px; color: var(--muted); display: grid; gap: 8px; }
+.stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.stack span, .chip { font-family: var(--font-mono); font-size: 12.5px; padding: 5px 11px; border-radius: 8px; background: var(--bg); border: 1px solid var(--line); color: var(--fg); }
+.term { font-family: var(--font-mono); font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 16px; overflow-x: auto; color: var(--muted); line-height: 1.8; align-self: start; }
+.term b { color: var(--accent); font-weight: 600; }
+.term .ok { color: #34d399; }
+.term .warn { color: var(--gold); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin-top: 24px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.card h3 { font-size: 18px; }
+.card p { margin: 8px 0 0; color: var(--muted); font-size: 14.5px; }
+.skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+.skill-groups h3 { font-size: 15px; color: var(--accent); margin-bottom: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.timeline { margin-top: 32px; border-left: 2px solid var(--line); padding-left: 24px; display: grid; gap: 24px; }
+.timeline .when { font-family: var(--font-mono); font-size: 13px; color: var(--accent); }
+.timeline h3 { font-size: 20px; margin-top: 2px; }
+.timeline p { margin: 4px 0 0; color: var(--muted); }
+.cert { display: flex; gap: 16px; align-items: flex-start; }
+.cert .seal { flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; color: var(--btn-fg); background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.contact { text-align: center; }
+.contact .lead { margin-inline: auto; }
+.contact .cta { margin-top: 28px; }
+footer { padding-block: 28px 40px; text-align: center; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+@media (max-width: 760px) {
+  .about, .featured { grid-template-columns: 1fr; }
+  .nav-in { flex-wrap: wrap; }
+  .links { order: 3; width: 100%; margin-left: 0; }
+  .theme { margin-left: auto; }
+  section { padding-block: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav-in">
+    <a class="brand" href="#home">MUHAMMAD HUNAIN<b>.AI</b></a>
+    <div class="links" id="links">
+      <a href="#home" class="on">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="theme" id="theme" type="button" aria-label="Toggle light and dark theme">&#9790;</button>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="hello">Hello!</div>
+    <h1 class="name">I'm <span class="grad">Muhammad Hunain</span></h1>
+    <div class="role">Artificial Intelligence &amp; Data Science</div>
+    <div class="tags"><span>AI &amp; Machine Learning Engineer</span><span>Python</span><span>NLP</span><span>FastAPI</span></div>
+    <div class="cta">
+      <a class="btn" href="#projects">Explore My Work</a>
+      <a class="btn ghost" href="https://github.com/Hunain018" target="_blank" rel="noopener">View GitHub</a>
+      <a class="btn ghost" href="#contact">Get in Touch</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/Hunain018" target="_blank" rel="noopener" aria-label="GitHub, Hunain018"><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a href="https://www.linkedin.com/in/muhammadhunain-ds" target="_blank" rel="noopener" aria-label="LinkedIn, Muhammad Hunain"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="about">
+    <div class="eyebrow">About me</div>
+    <h2>Building AI that reads, sees and defends</h2>
+    <div class="about">
+      <div>
+        <p class="lead" style="margin-top:0">I'm an AI and machine learning engineer in the making, working across NLP, computer vision and generative AI. I like turning models into working products: a clean FastAPI service, a dataset that is actually usable, a dashboard someone can read at a glance.</p>
+        <p class="lead">My focus right now is applying machine learning to cybersecurity, where fast and accurate decisions matter most. CyberShield AI is where those two interests meet.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>Role</dt><dd>AI &amp; Machine Learning Engineer</dd></div>
+        <div><dt>Studying</dt><dd>BS Data Science, SMIU</dd></div>
+        <div><dt>Interests</dt><dd>AI security, NLP, computer vision</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="eyebrow">Skills</div>
+    <h2>Tools I work with</h2>
+    <div class="skill-groups">
+      <div class="card"><h3>Core</h3><div class="chips"><span class="chip">Python</span><span class="chip">Machine Learning</span><span class="chip">Deep Learning</span></div></div>
+      <div class="card"><h3>AI specialities</h3><div class="chips"><span class="chip">NLP</span><span class="chip">Computer Vision</span><span class="chip">Generative AI</span></div></div>
+      <div class="card"><h3>Engineering</h3><div class="chips"><span class="chip">FastAPI</span><span class="chip">Supabase</span><span class="chip">Git &amp; GitHub</span></div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="eyebrow">Featured project</div>
+    <h2>CyberShield AI</h2>
+    <article class="featured">
+      <div>
+        <span class="pill">AI SOC ANALYST PLATFORM</span>
+        <h3>One console for security events, triage and response</h3>
+        <p class="sub">A SOC workspace where AI helps analysts triage incidents and every response stays auditable.</p>
+        <p style="margin:0;color:var(--muted)">CyberShield AI brings security events, incident triage, threat context and analyst-approved response into a single workspace, so an analyst can see what is happening and act on it without switching tools.</p>
+        <ul>
+          <li>Real-time event analysis through a live monitor.</li>
+          <li>AI-assisted triage, with an AI copilot beside each incident.</li>
+          <li>Auditable response workflow: response center, audit trail and reports.</li>
+          <li>Threat intelligence and an attack graph for context.</li>
+        </ul>
+        <div class="cta" style="justify-content:flex-start;margin-top:22px">
+          <a class="btn" href="https://cybershield-soc-dashboard-rho.vercel.app/" target="_blank" rel="noopener">Open live demo</a>
+          <a class="btn ghost" href="https://github.com/Hunain018" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <div class="stack"><span>Python</span><span>FastAPI</span><span>Machine Learning</span><span>NLP</span><span>Supabase</span></div>
+      </div>
+      <div class="term" role="img" aria-label="CyberShield AI console sections">
+<b>CyberShield AI &mdash; SOC Console</b><br>
+<span class="ok">&#9679;</span> Overview<br>
+<span class="ok">&#9679;</span> Live monitor<br>
+<span class="warn">&#9679;</span> Incidents<br>
+<span class="ok">&#9679;</span> Threat intelligence<br>
+<span class="ok">&#9679;</span> Attack graph<br>
+<span class="ok">&#9679;</span> AI copilot<br>
+<span class="ok">&#9679;</span> Response center<br>
+<span class="ok">&#9679;</span> Audit trail<br>
+<span class="ok">&#9679;</span> Reports
+      </div>
+    </article>
+    <p class="lead" style="margin-top:20px"><a href="https://github.com/Hunain018" target="_blank" rel="noopener" style="color:var(--accent)">More projects on GitHub (Hunain018)</a></p>
+  </section>
+
+  <section id="education">
+    <div class="eyebrow">Education</div>
+    <h2>Where I'm learning</h2>
+    <div class="timeline">
+      <div>
+        <div class="when">2026 to present</div>
+        <h3>BS Data Science</h3>
+        <p>Sindh Madressatul Islam University (SMIU)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <div class="eyebrow">Certificates</div>
+    <h2>Training and credentials</h2>
+    <div class="cards">
+      <div class="card cert"><div class="seal">NED</div><div><h3>Cybersecurity &amp; Ethical Hacking</h3><p>NED University of Engineering and Technology</p></div></div>
+      <div class="card cert"><div class="seal">S</div><div><h3>Saylani Training Certificate</h3><p>Saylani Welfare IT training program</p></div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="eyebrow">Contact</div>
+    <h2>Let's build something</h2>
+    <p class="lead">Open to internships, collaborations and AI project work. The quickest way to reach me is through GitHub or LinkedIn.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/Hunain018" target="_blank" rel="noopener">GitHub: Hunain018</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/muhammadhunain-ds" target="_blank" rel="noopener">LinkedIn: Muhammad Hunain</a>
+    </div>
+  </section>
+</main>
+
+<footer>&copy; 2026 Muhammad Hunain. AI &amp; Machine Learning Engineer.</footer>
+
+<script>
+(function () {
+  // theme toggle
+  var root = document.documentElement, btn = document.getElementById('theme');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function sync() { btn.innerHTML = isDark() ? '&#9728;' : '&#9790;'; }
+  btn.addEventListener('click', function () {
+    root.setAttribute('data-theme', isDark() ? 'light' : 'dark'); sync();
+  });
+  sync();
+
+  // active nav link
+  var links = [].slice.call(document.querySelectorAll('#links a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function onScroll() {
+    var y = window.scrollY + 120, cur = 0;
+    secs.forEach(function (s, i) { if (s && s.offsetTop <= y) cur = i; });
+    links.forEach(function (a, i) { a.classList.toggle('on', i === cur); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // particle network
+  var c = document.getElementById('net'), ctx = c.getContext('2d'), pts = [], W = 0, H = 0, raf;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size() {
+    var r = c.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height; c.width = W * d; c.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    var n = Math.max(24, Math.min(70, Math.round(W * H / 14000)));
+    pts = [];
+    for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25 });
+  }
+  function color() { return getComputedStyle(root).getPropertyValue('--accent').trim() || '#22d3ee'; }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var col = color(), i, j, p, q, dx, dy, dist;
+    for (i = 0; i < pts.length; i++) {
+      p = pts[i];
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      for (j = i + 1; j < pts.length; j++) {
+        q = pts[j]; dx = p.x - q.x; dy = p.y - q.y; dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) { ctx.globalAlpha = (1 - dist / 130) * .35; ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+      }
+      ctx.globalAlpha = .75; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 6.2832); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (!reduce) raf = requestAnimationFrame(draw);
+  }
+  size(); draw();
+  var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { cancelAnimationFrame(raf); size(); draw(); }, 150); });
+})();
+</script>
+
+</body>
+</html>
